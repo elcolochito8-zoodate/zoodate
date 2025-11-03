@@ -2,7 +2,7 @@
   "expo": {
     "name": "zoodate",
     "slug": "zoodate",
-    "version": "1.9.0",
+    "version": "2.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/zoodate.png",
     "scheme": "zoodate",
@@ -12,11 +12,14 @@
       "supportsTablet": true,
       "icon": "./assets/images/zoodate.png",
       "config": {
-        "googleMapsApiKey": "YOUR_IOS_GOOGLE_MAPS_API_KEY"
+        "googleMapsApiKey": "AIzaSyBCa6uXcj7PKS_tp5CN9-ABTNC160XXkKA"
       },
       "bundleIdentifier": "com.cristian.zoodates",
       "infoPlist": {
-        "ITSAppUsesNonExemptEncryption": false
+        "ITSAppUsesNonExemptEncryption": false,
+        "NSLocationWhenInUseUsageDescription": "ZooDate necesita tu ubicación para mostrarte mascotas cercanas en tu zona. Solo compartimos tu ciudad o área general, nunca tu ubicación exacta.",
+        "NSLocationAlwaysAndWhenInUseUsageDescription": "ZooDate utiliza tu ubicación para conectarte con otros dueños de mascotas en tu área. Tu ubicación exacta nunca se comparte con otros usuarios.",
+        "NSLocationAlwaysUsageDescription": "Tu ubicación nos ayuda a encontrar los mejores matches cerca de ti. Solo mostramos tu zona general a otros usuarios."
       },
       "buildNumber": "3"
     },

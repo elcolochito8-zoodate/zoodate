@@ -193,7 +193,9 @@ export default function PetDetailScreen() {
 
   const handlePurchaseSuccess = async () => {
     await checkSubscription();
-    handleSendMessage();
+    // Si se activó el paywall desde el botón de desbloquear email, simplemente cerrar el modal
+    // El email se mostrará automáticamente al actualizar isSubscribed
+    setShowPaywall(false);
   };
 
   const getIntentLabel = (intent?: string) => {
@@ -322,7 +324,22 @@ export default function PetDetailScreen() {
           <Text style={styles.sectionTitle}>Dueño</Text>
           <View style={styles.ownerCard}>
             <Text style={styles.ownerName}>{pet.owner_name}</Text>
-            <Text style={styles.ownerEmail}>{pet.owner_email}</Text>
+
+            {isSubscribed ? (
+              <Text style={styles.ownerEmail}>{pet.owner_email}</Text>
+            ) : (
+              <View>
+                <View style={styles.blurredEmailContainer}>
+                  <Text style={styles.blurredEmail}>••••••@••••••.com</Text>
+                </View>
+                <TouchableOpacity
+                  style={styles.unlockButton}
+                  onPress={() => setShowPaywall(true)}
+                >
+                  <Text style={styles.unlockButtonText}>🔓 Desbloquear contacto Premium</Text>
+                </TouchableOpacity>
+              </View>
+            )}
           </View>
         </View>
 
@@ -501,6 +518,28 @@ const styles = StyleSheet.create({
   ownerEmail: {
     fontSize: 14,
     color: '#666',
+  },
+  blurredEmailContainer: {
+    marginTop: 8,
+    marginBottom: 12,
+  },
+  blurredEmail: {
+    fontSize: 14,
+    color: '#999',
+    letterSpacing: 2,
+  },
+  unlockButton: {
+    backgroundColor: '#FF6B6B',
+    paddingVertical: 12,
+    paddingHorizontal: 20,
+    borderRadius: 10,
+    alignItems: 'center',
+    marginTop: 8,
+  },
+  unlockButtonText: {
+    color: '#fff',
+    fontSize: 14,
+    fontWeight: '600',
   },
   footer: {
     position: 'absolute',

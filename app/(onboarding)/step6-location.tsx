@@ -136,8 +136,26 @@ export default function Step6Location() {
       }
 
       // 3. Crear mascota
-      // Calcular edad total en años (incluyendo meses como decimal)
-      const totalAge = data.ageYears + Math.floor(data.ageMonths / 12);
+      // Calcular edad total en años
+      // Si tiene menos de 1 año (0 años y algunos meses), guardarlo como 1 año
+      let totalAge = data.ageYears;
+      if (data.ageMonths >= 12) {
+        totalAge += Math.floor(data.ageMonths / 12);
+      }
+      // Si el perro tiene 0 años pero tiene meses, asignar 1 año
+      if (totalAge === 0 && data.ageMonths > 0) {
+        totalAge = 1;
+      }
+
+      // Log para debug
+      console.log('Creating pet with data:', {
+        name: data.petName,
+        breed: data.breed,
+        gender: data.gender,
+        age: totalAge,
+        ageYears: data.ageYears,
+        ageMonths: data.ageMonths,
+      });
 
       const { data: petData, error: petError } = await supabase
         .from('pets')
@@ -156,7 +174,12 @@ export default function Step6Location() {
         .select()
         .single();
 
-      if (petError) throw petError;
+      if (petError) {
+        console.error('Error creating pet:', petError);
+        throw petError;
+      }
+
+      console.log('Pet created successfully:', petData);
 
       // 4. Crear foto de perfil si existe
       if (photoUrl && petData) {

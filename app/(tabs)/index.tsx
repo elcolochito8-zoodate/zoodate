@@ -14,6 +14,7 @@ import { useRouter } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import LoadingDog from '@/components/LoadingDog';
 import ErrorDog from '@/components/ErrorDog';
+import { useRevenueCat } from '@/contexts/RevenueCatContext';
 
 interface Pet {
   id: string;
@@ -32,6 +33,7 @@ interface Pet {
 
 export default function MarketplaceScreen() {
   const router = useRouter();
+  const { isSubscribed } = useRevenueCat();
   const [pets, setPets] = useState<Pet[]>([]);
   const [filteredPets, setFilteredPets] = useState<Pet[]>([]);
   const [loading, setLoading] = useState(true);
@@ -206,6 +208,11 @@ export default function MarketplaceScreen() {
       {/* Header con búsqueda y filtros */}
       <View style={styles.header}>
         <Text style={styles.logo}>🐾 ZooDate</Text>
+        {isSubscribed && (
+          <View style={styles.proBadge}>
+            <Text style={styles.proText}>PRO</Text>
+          </View>
+        )}
 
         <View style={styles.searchContainer}>
           <TextInput
@@ -342,12 +349,32 @@ const styles = StyleSheet.create({
     paddingHorizontal: 15,
     borderBottomWidth: 1,
     borderBottomColor: '#E0E0E0',
+    position: 'relative',
   },
   logo: {
     fontSize: 28,
     fontWeight: 'bold',
     textAlign: 'center',
     marginBottom: 15,
+  },
+  proBadge: {
+    position: 'absolute',
+    top: 65,
+    right: 20,
+    backgroundColor: '#FFD700',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  proText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
   },
   searchContainer: {
     marginBottom: 10,

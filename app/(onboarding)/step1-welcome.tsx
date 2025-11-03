@@ -11,10 +11,7 @@ export default function Step1Welcome() {
     <View style={styles.container}>
       <StatusBar style="dark" />
 
-      {/* Header con logo */}
-      <View style={styles.header}>
-        <Text style={styles.logo}>🐾 ZooDate</Text>
-      </View>
+     
 
       {/* Contenido principal */}
       <View style={styles.content}>

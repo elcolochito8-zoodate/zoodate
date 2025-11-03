@@ -11,9 +11,11 @@ import {
 import { useRouter } from 'expo-router';
 import { supabase } from '@/lib/supabase';
 import LoadingDog from '@/components/LoadingDog';
+import { useRevenueCat } from '@/contexts/RevenueCatContext';
 
 export default function ProfileScreen() {
   const router = useRouter();
+  const { isSubscribed } = useRevenueCat();
   const [loading, setLoading] = useState(true);
   const [profile, setProfile] = useState<any>(null);
   const [pet, setPet] = useState<any>(null);
@@ -95,6 +97,11 @@ export default function ProfileScreen() {
       {/* Header */}
       <View style={styles.header}>
         <Text style={styles.logo}>👤 Mi Perfil</Text>
+        {isSubscribed && (
+          <View style={styles.proBadge}>
+            <Text style={styles.proText}>PRO</Text>
+          </View>
+        )}
       </View>
 
       {/* Pet Card */}
@@ -182,10 +189,30 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     elevation: 3,
+    position: 'relative',
   },
   logo: {
     fontSize: 28,
     fontWeight: 'bold',
+  },
+  proBadge: {
+    position: 'absolute',
+    top: 65,
+    right: 20,
+    backgroundColor: '#FFD700',
+    paddingHorizontal: 12,
+    paddingVertical: 6,
+    borderRadius: 20,
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.2,
+    shadowRadius: 4,
+    elevation: 5,
+  },
+  proText: {
+    fontSize: 14,
+    fontWeight: 'bold',
+    color: '#333',
   },
   content: {
     padding: 20,
