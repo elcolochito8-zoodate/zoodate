@@ -17,7 +17,7 @@
       "bundleIdentifier": "com.cristian.zoodates",
       "infoPlist": {
         "ITSAppUsesNonExemptEncryption": false,
-        "NSLocationWhenInUseUsageDescription": "ZooDate necesita tu ubicación para mostrarte mascotas cercanas en tu zona. Solo compartimos tu ciudad o área general, nunca tu ubicación exacta.",
+        "NSLocationWhenInUseUsageDescription": "Usamos tus fotos para que puedas subir imágenes de tu mascota a su perfil y mostrarlas a otros usuarios dentro de la app.",
         "NSLocationAlwaysAndWhenInUseUsageDescription": "ZooDate utiliza tu ubicación para conectarte con otros dueños de mascotas en tu área. Tu ubicación exacta nunca se comparte con otros usuarios.",
         "NSLocationAlwaysUsageDescription": "Tu ubicación nos ayuda a encontrar los mejores matches cerca de ti. Solo mostramos tu zona general a otros usuarios."
       },
